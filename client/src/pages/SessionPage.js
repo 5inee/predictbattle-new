@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import PredictionItem from '../components/PredictionItem';
@@ -16,10 +16,11 @@ const SessionPage = () => {
   
   const { id } = useParams();
   const { user } = useContext(UserContext);
-  const navigate = useNavigate();
+  // إزالة navigate لأنه غير مستخدم
+  // const navigate = useNavigate();
   
-  // جلب بيانات الجلسة
-  const fetchSession = async () => {
+  // جلب بيانات الجلسة مع استخدام useCallback
+  const fetchSession = useCallback(async () => {
     try {
       setLoading(true);
       
@@ -39,12 +40,12 @@ const SessionPage = () => {
       setErrorMessage('حدث خطأ أثناء جلب بيانات الجلسة');
       setLoading(false);
     }
-  };
+  }, [id, user.token]);
   
   // تحميل البيانات عند تحميل الصفحة
   useEffect(() => {
     fetchSession();
-  }, [id, user.token]);
+  }, [fetchSession]);
   
   // التحقق من أن المستخدم قدم توقعًا بالفعل
   const hasSubmittedPrediction = () => {

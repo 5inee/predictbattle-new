@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
@@ -16,8 +16,8 @@ const DashboardPage = () => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   
-  // جلب جلسات المستخدم
-  const fetchUserSessions = async () => {
+  // جلب جلسات المستخدم - مع استخدام useCallback
+  const fetchUserSessions = useCallback(async () => {
     try {
       setLoading(true);
       
@@ -37,14 +37,14 @@ const DashboardPage = () => {
       setErrorMessage('حدث خطأ أثناء جلب الجلسات');
       setLoading(false);
     }
-  };
+  }, [user.token]);
   
   // تحميل الجلسات عند فتح التبويب
   useEffect(() => {
     if (activeTab === 'sessions') {
       fetchUserSessions();
     }
-  }, [activeTab]);
+  }, [activeTab, fetchUserSessions]);
   
   // التبديل بين التبويبات
   const switchTab = (tab) => {
