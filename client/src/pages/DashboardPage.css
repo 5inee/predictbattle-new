@@ -1,0 +1,144 @@
+.dashboard-page {
+    padding: 2rem 0;
+  }
+  
+  .dashboard-header {
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-title {
+    font-size: 2rem;
+    color: var(--dark-color);
+    text-align: center;
+  }
+  
+  .dashboard-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-tab {
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #555;
+    text-align: center;
+    flex: 1;
+    transition: all 0.3s;
+  }
+  
+  .dashboard-tab.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+  }
+  
+  .dashboard-tab:hover:not(.active) {
+    background-color: rgba(94, 96, 206, 0.05);
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+  }
+  
+  .section-description {
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  .subsection-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .join-section {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .session-code-input {
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    direction: ltr;
+  }
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .divider span {
+    padding: 0 1rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .sessions-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .empty-state p {
+    margin-bottom: 1.5rem;
+    color: #666;
+  }
+  
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+  
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(94, 96, 206, 0.1);
+    border-radius: 50%;
+    border-left-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* للشاشات الصغيرة */
+  @media (max-width: 768px) {
+    .dashboard-tab {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .sessions-list {
+      grid-template-columns: 1fr;
+    }
+  }

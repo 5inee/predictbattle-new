@@ -1,0 +1,92 @@
+.prediction-item {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+  }
+  
+  .prediction-item:hover {
+    transform: translateY(-3px);
+  }
+  
+  .prediction-item.current-user {
+    background-color: rgba(94, 96, 206, 0.05);
+    border-right: 3px solid var(--primary-color);
+  }
+  
+  .prediction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+  }
+  
+  .user-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .username {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-badge {
+    font-size: 0.75rem;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    margin-right: 0.5rem;
+  }
+  
+  .prediction-time {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.25rem;
+  }
+  
+  .prediction-content {
+    padding-top: 0.5rem;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .prediction-content p {
+    margin: 0;
+    white-space: pre-wrap;
+  }
+  
+  /* للشاشات الصغيرة */
+  @media (max-width: 768px) {
+    .prediction-item {
+      padding: 1rem;
+    }
+    
+    .avatar {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+  }
