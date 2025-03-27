@@ -4,6 +4,6 @@ buildCommand = "npm run install-all"
 
 [deploy]
 startCommand = "npm start"
-healthcheckPath = "/api/test"
-healthcheckTimeout = 300
+# إما استخدم مسار بسيط للغاية أو قم بتعليق فحص الصحة مؤقتاً
+# healthcheckPath = "/"
 restartPolicyType = "on_failure"
