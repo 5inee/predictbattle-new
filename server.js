@@ -64,3 +64,19 @@ app.listen(PORT, () => {
   console.log(`الخادم يعمل على المنفذ ${PORT}`);
   console.log(`للوصول إلى الخادم: http://localhost:${PORT}`);
 });
+
+// إضافة هذا الكود قبل تشغيل الخادم
+// التعامل مع الملفات الثابتة في الإنتاج
+if (process.env.NODE_ENV === 'production') {
+    // تعيين مجلد المبنى الثابت
+    app.use(express.static(path.join(__dirname, '/client/build')));
+  
+    // أي مسار غير موجود في المسارات المحددة سابقاً يتم توجيهه للتطبيق الأمامي
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  } else {
+    app.get('/', (req, res) => {
+      res.send('الخادم يعمل في وضع التطوير...');
+    });
+  }
