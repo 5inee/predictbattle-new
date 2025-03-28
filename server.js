@@ -47,17 +47,8 @@ const sessionRoutes = require('./server/routes/sessionRoutes');
 app.use('/api/users', userRoutes);
 app.use('/api/sessions', sessionRoutes);
 
-// معالجة الأخطاء العامة
-app.use((err, req, res, next) => {
-  console.error('خطأ عام في الخادم:', err);
-  res.status(500).json({ 
-    message: 'حدث خطأ في الخادم', 
-    error: process.env.NODE_ENV === 'development' ? err.message : 'خطأ داخلي' 
-  });
-});
-
 // التعامل مع الملفات الثابتة في الإنتاج
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
   // تعيين مجلد المبنى الثابت
   app.use(express.static(path.join(__dirname, '/client/build')));
 
@@ -70,6 +61,15 @@ if (process.env.NODE_ENV === 'production') {
     res.send('الخادم يعمل في وضع التطوير...');
   });
 }
+
+// معالجة الأخطاء العامة
+app.use((err, req, res, next) => {
+  console.error('خطأ عام في الخادم:', err);
+  res.status(500).json({ 
+    message: 'حدث خطأ في الخادم', 
+    error: process.env.NODE_ENV === 'development' ? err.message : 'خطأ داخلي' 
+  });
+});
 
 // بدء تشغيل الخادم أولاً، ثم الاتصال بقاعدة البيانات
 const server = app.listen(PORT, () => {
