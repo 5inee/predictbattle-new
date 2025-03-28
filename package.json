@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "description": "منصة PredictBattle للتوقعات الجماعية",
   "main": "server.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "install-client": "cd client && npm install",
-    "install-all": "npm install && npm run install-client",
-    "build": "node build.js",
-    "vercel-build": "npm run build"
+    "build": "cd client && npm install && npm run build",
+    "vercel-build": "echo \"Vercel build step\""
   },
   "keywords": [
     "predictions",
